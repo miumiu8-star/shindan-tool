@@ -8,395 +8,394 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(135deg, #f8d7dd 0%, #e8d5e8 50%, #d5cff0 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      color: #fff;
+      padding: 24px 16px;
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
     }
 
-    .container {
-      max-width: 640px;
+    .card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 40px 28px;
+      max-width: 400px;
       width: 100%;
+      box-shadow: 0 20px 60px rgba(180, 140, 170, 0.22);
     }
+
+    /* ===== SCREEN CONTROL ===== */
+    .screen { display: none; }
+    .screen.active { display: block; }
 
     /* ===== TOP ===== */
-    #screen-top {
-      text-align: center;
-      animation: fadeIn 0.6s ease;
-    }
-    #screen-top .badge {
+    .top-badge {
       display: inline-block;
-      background: linear-gradient(90deg, #e94560, #ff6b6b);
+      background: linear-gradient(90deg, #f2a5a0, #c9b8e8);
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       padding: 4px 14px;
       border-radius: 20px;
       letter-spacing: 1px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-    #screen-top h1 {
-      font-size: clamp(22px, 5vw, 32px);
-      font-weight: 900;
-      line-height: 1.4;
-      margin-bottom: 16px;
+    .top-title {
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Georgia', serif;
+      font-size: clamp(22px, 6vw, 28px);
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
     }
-    #screen-top h1 span {
-      color: #f6c90e;
+    .top-title span {
+      background: linear-gradient(90deg, #e88a8a, #b09cd8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    #screen-top p.sub {
-      font-size: 14px;
-      color: #aac4e8;
-      line-height: 1.7;
+    .top-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.8;
       margin-bottom: 32px;
     }
-    .btn-start {
-      display: inline-block;
-      background: linear-gradient(90deg, #e94560, #ff6b6b);
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 16px 48px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(233,69,96,0.4);
-      transition: transform 0.15s, box-shadow 0.15s;
-      text-decoration: none;
+    .top-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      justify-content: center;
     }
-    .btn-start:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(233,69,96,0.5); }
-    .btn-start:active { transform: translateY(0); }
-
-    /* ===== QUIZ ===== */
-    #screen-quiz {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-    .progress-wrap {
-      margin-bottom: 24px;
-    }
-    .progress-label {
+    .top-meta-item {
+      text-align: center;
       font-size: 12px;
-      color: #aac4e8;
-      margin-bottom: 6px;
+      color: #aaa;
+    }
+    .top-meta-item strong {
+      display: block;
+      font-size: 20px;
+      color: #e88a8a;
+      font-family: 'Hiragino Mincho ProN', serif;
+    }
+
+    /* ===== PROGRESS ===== */
+    .progress-wrap { margin-bottom: 28px; }
+    .progress-header {
       display: flex;
       justify-content: space-between;
+      font-size: 12px;
+      color: #bbb;
+      margin-bottom: 8px;
     }
     .progress-bar {
       height: 6px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 3px;
+      background: #f0eaf0;
+      border-radius: 10px;
       overflow: hidden;
     }
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #e94560, #f6c90e);
-      border-radius: 3px;
+      background: linear-gradient(90deg, #e88a8a, #c9b8e8);
+      border-radius: 10px;
       transition: width 0.4s ease;
     }
-    .question-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 32px 28px;
-      backdrop-filter: blur(8px);
-    }
-    .question-num {
-      font-size: 12px;
-      color: #e94560;
+
+    /* ===== QUESTION ===== */
+    .q-num {
+      font-size: 11px;
+      color: #e88a8a;
       font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
     }
-    .question-text {
-      font-size: clamp(16px, 3.5vw, 20px);
-      font-weight: 700;
-      line-height: 1.6;
-      margin-bottom: 28px;
+    .q-text {
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      font-size: clamp(16px, 4vw, 19px);
+      color: #2a2a2a;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 600;
     }
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .choices { display: flex; flex-direction: column; gap: 10px; }
     .choice-btn {
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(255,255,255,0.18);
-      border-radius: 12px;
-      padding: 14px 20px;
+      width: 100%;
+      padding: 14px 18px;
+      background: #fff;
+      border: 1.5px solid #f2c8c8;
+      border-radius: 14px;
+      font-size: 14px;
+      color: #555;
       text-align: left;
-      color: #fff;
-      font-size: 15px;
       cursor: pointer;
-      transition: all 0.2s;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
+      transition: all 0.2s;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
     }
     .choice-btn:hover {
-      background: rgba(233,69,96,0.15);
-      border-color: #e94560;
-      transform: translateX(4px);
+      background: #fdf3f4;
+      border-color: #e88a8a;
+      color: #333;
     }
     .choice-btn.selected {
-      background: rgba(233,69,96,0.25);
-      border-color: #e94560;
+      background: linear-gradient(135deg, #fdf0f0, #f5f0fc);
+      border-color: #e88a8a;
+      color: #333;
     }
     .choice-label {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       width: 26px;
       height: 26px;
       min-width: 26px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      font-size: 12px;
+      background: linear-gradient(135deg, #f9e0e0, #e8e0f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
       font-weight: 700;
-      color: #f6c90e;
+      color: #c88aa0;
     }
 
     /* ===== RESULT ===== */
-    #screen-result {
-      display: none;
-      animation: fadeIn 0.6s ease;
-    }
-    .result-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 32px 28px;
-      margin-bottom: 24px;
+    .result-top {
       text-align: center;
-      backdrop-filter: blur(8px);
+      margin-bottom: 24px;
     }
-    .result-type-badge {
+    .result-badge {
       display: inline-block;
-      background: linear-gradient(90deg, #e94560, #ff6b6b);
+      background: linear-gradient(90deg, #f2a5a0, #c9b8e8);
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       padding: 4px 14px;
       border-radius: 20px;
-      margin-bottom: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
     }
-    .result-emoji { font-size: 56px; margin-bottom: 12px; }
+    .result-emoji { font-size: 52px; margin-bottom: 10px; }
     .result-title {
-      font-size: clamp(20px, 5vw, 28px);
-      font-weight: 900;
-      color: #f6c90e;
-      margin-bottom: 8px;
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      font-size: clamp(20px, 5vw, 24px);
+      font-weight: 700;
+      background: linear-gradient(90deg, #e88a8a, #b09cd8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
     }
     .result-subtitle {
-      font-size: 14px;
-      color: #aac4e8;
-      margin-bottom: 20px;
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 18px;
     }
     .result-desc {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #e0ecff;
+      background: linear-gradient(135deg, #fdf5f5, #f5f0fc);
+      border-radius: 16px;
+      padding: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.9;
       text-align: left;
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      padding: 16px;
+      border: 1px solid #f0e0e8;
     }
 
-    /* ===== FORM ===== */
-    .form-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+    /* ===== LINE CTA ===== */
+    .cta-box {
+      margin-top: 24px;
+      background: linear-gradient(135deg, #fdf0f5, #f5f0fc);
       border-radius: 20px;
-      padding: 28px;
-      backdrop-filter: blur(8px);
-      margin-bottom: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      border: 1px solid #f0dce8;
     }
-    .form-card h3 {
-      font-size: 18px;
+    .cta-box h3 {
+      font-family: 'Hiragino Mincho ProN', serif;
+      font-size: 16px;
+      color: #2a2a2a;
+      margin-bottom: 6px;
       font-weight: 700;
-      margin-bottom: 6px;
-      text-align: center;
     }
-    .form-card p {
-      font-size: 13px;
-      color: #aac4e8;
-      text-align: center;
-      margin-bottom: 20px;
-      line-height: 1.6;
+    .cta-box p {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 18px;
+      line-height: 1.7;
     }
-    .form-group { margin-bottom: 14px; }
-    .form-group label {
+    .btn-line {
       display: block;
-      font-size: 13px;
-      color: #aac4e8;
-      margin-bottom: 6px;
-    }
-    .form-group input {
       width: 100%;
-      background: rgba(255,255,255,0.08);
-      border: 1.5px solid rgba(255,255,255,0.18);
-      border-radius: 10px;
-      padding: 12px 16px;
+      padding: 16px;
+      background: linear-gradient(90deg, #f2a5a0, #c9b8e8);
+      border: none;
+      border-radius: 30px;
       color: #fff;
       font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
-    .form-group input:focus { border-color: #e94560; }
-    .btn-submit {
-      width: 100%;
-      background: linear-gradient(90deg, #e94560, #ff6b6b);
-      color: #fff;
-      font-size: 16px;
       font-weight: 700;
-      padding: 14px;
-      border-radius: 50px;
-      border: none;
+      letter-spacing: 1px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(233,69,96,0.4);
-      transition: transform 0.15s, box-shadow 0.15s;
-      margin-top: 6px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(230, 160, 180, 0.35);
+      transition: opacity 0.2s, transform 0.15s;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
     }
-    .btn-submit:hover { transform: translateY(-2px); }
-    .btn-submit:active { transform: translateY(0); }
-    .privacy-note {
-      font-size: 11px;
-      color: rgba(255,255,255,0.35);
-      text-align: center;
-      margin-top: 10px;
-    }
+    .btn-line:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-line:active { transform: translateY(0); }
 
     /* ===== SHARE ===== */
+    .share-wrap {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .share-label {
+      font-size: 11px;
+      color: #ccc;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
     .share-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
-      flex-wrap: wrap;
     }
     .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       border: none;
       text-decoration: none;
-      transition: transform 0.15s, opacity 0.15s;
+      transition: opacity 0.2s;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
     }
-    .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-    .share-x { background: #000; color: #fff; }
-    .share-line { background: #06c755; color: #fff; }
-    .share-copy { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
-    .retry-btn {
+    .share-btn:hover { opacity: 0.8; }
+    .share-x { background: #1a1a1a; color: #fff; }
+    .share-copy { background: #f0eaf0; color: #aaa; border: 1px solid #e8e0e8; }
+
+    .retry-link {
       display: block;
       text-align: center;
       margin-top: 16px;
-      color: #aac4e8;
-      font-size: 13px;
+      font-size: 12px;
+      color: #ccc;
       cursor: pointer;
       text-decoration: underline;
     }
 
-    /* ===== THANK YOU ===== */
-    #screen-thankyou {
-      display: none;
-      text-align: center;
-      animation: fadeIn 0.6s ease;
+    /* ===== START BUTTON ===== */
+    .btn-start {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(90deg, #f2a5a0, #c9b8e8);
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(230, 160, 180, 0.35);
+      transition: opacity 0.2s, transform 0.15s;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
     }
-    #screen-thankyou .ty-emoji { font-size: 64px; margin-bottom: 16px; }
-    #screen-thankyou h2 { font-size: 26px; font-weight: 900; margin-bottom: 12px; }
-    #screen-thankyou p { font-size: 15px; color: #aac4e8; line-height: 1.7; }
+    .btn-start:hover { opacity: 0.9; transform: translateY(-2px); }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
+    /* ===== DIVIDER ===== */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f0dce8, transparent);
+      margin: 24px 0;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .screen.active { animation: fadeUp 0.45s ease; }
   </style>
 </head>
 <body>
-<div class="container">
+<div class="card">
 
   <!-- ===== TOP ===== -->
-  <div id="screen-top">
-    <div class="badge">＼ 無料診断 ／</div>
-    <h1>なぜあなたの<br><span>売上が上がらないのか</span>、<br>今すぐわかります</h1>
-    <p class="sub">
+  <div id="screen-top" class="screen active">
+    <div style="text-align:center;margin-bottom:8px;">
+      <span class="top-badge">✦ 無料診断 ✦</span>
+    </div>
+    <div style="text-align:center;">
+      <p style="font-size:32px;margin-bottom:12px;">🌸</p>
+      <h1 class="top-title">
+        なぜあなたの<br>
+        <span>売上が上がらないのか</span><br>
+        わかります
+      </h1>
+    </div>
+    <p class="top-sub" style="text-align:center;">
       コーチ・コンサル・講師・美容の方へ。<br>
-      5つの質問に答えるだけで、<br>
-      売上が止まっている<strong>本当の原因</strong>が明らかになります。
+      5つの質問に答えるだけで、<br>売上が止まっている本当の原因が明らかに。
     </p>
-    <button class="btn-start" onclick="startQuiz()">診断スタート →</button>
+    <div class="top-meta">
+      <div class="top-meta-item"><strong>5</strong>質問数</div>
+      <div class="top-meta-item"><strong>3</strong>診断タイプ</div>
+      <div class="top-meta-item"><strong>無料</strong>完全無料</div>
+    </div>
+    <div class="divider"></div>
+    <button class="btn-start" onclick="startQuiz()">診断スタート ✦</button>
+    <p style="text-align:center;font-size:11px;color:#ccc;margin-top:12px;">所要時間：約1分</p>
   </div>
 
   <!-- ===== QUIZ ===== -->
-  <div id="screen-quiz">
+  <div id="screen-quiz" class="screen">
     <div class="progress-wrap">
-      <div class="progress-label">
-        <span id="progress-text">質問 1 / 5</span>
-        <span id="progress-pct">20%</span>
+      <div class="progress-header">
+        <span id="prog-label">質問 1 / 5</span>
+        <span id="prog-pct">20%</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+        <div class="progress-fill" id="prog-fill" style="width:20%"></div>
       </div>
     </div>
-    <div class="question-card">
-      <div class="question-num" id="q-num">Q1</div>
-      <div class="question-text" id="q-text"></div>
-      <div class="choices" id="q-choices"></div>
-    </div>
+    <div class="q-num" id="q-num">Q 1</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="choices" id="q-choices"></div>
   </div>
 
   <!-- ===== RESULT ===== -->
-  <div id="screen-result">
-    <div class="result-card">
-      <div class="result-type-badge">診断結果</div>
+  <div id="screen-result" class="screen">
+    <div class="result-top">
+      <div class="result-badge">✦ 診断結果 ✦</div>
       <div class="result-emoji" id="res-emoji"></div>
       <div class="result-title" id="res-title"></div>
       <div class="result-subtitle" id="res-subtitle"></div>
       <div class="result-desc" id="res-desc"></div>
     </div>
 
-    <div class="form-card">
-      <h3>🎁 無料で解決策を受け取る</h3>
-      <p>あなたの原因タイプに合わせた<br><strong>「売上アップ3ステップ」</strong>をLINEでプレゼント中</p>
-      <a class="btn-submit" href="https://s.lmes.jp/landing-qr/2006793003-31EN9Bxn?uLand=xDpbWA" target="_blank" style="display:block;text-align:center;text-decoration:none;">📲 LINEで無料で受け取る →</a>
-      <p class="privacy-note">※ LINEの公式アカウントに遷移します。</p>
+    <div class="cta-box">
+      <h3>🎁 解決策を無料でお届け</h3>
+      <p>あなたのタイプに合った<br>「売上アップ3ステップ」をLINEでプレゼント中</p>
+      <a class="btn-line" href="https://s.lmes.jp/landing-qr/2006793003-31EN9Bxn?uLand=xDpbWA" target="_blank">
+        📩 LINEで無料で受け取る ✦
+      </a>
     </div>
 
-    <div>
-      <p style="text-align:center;font-size:13px;color:#aac4e8;margin-bottom:12px;">結果をシェアする</p>
+    <div class="share-wrap">
+      <p class="share-label">— 結果をシェアする —</p>
       <div class="share-row">
-        <a id="share-x" class="share-btn share-x" href="#" target="_blank">𝕏 でシェア</a>
-        <a id="share-line" class="share-btn share-line" href="#" target="_blank">📲 LINEでシェア</a>
+        <a id="share-x" class="share-btn share-x" href="#" target="_blank">𝕏 シェア</a>
         <button class="share-btn share-copy" onclick="copyUrl()">🔗 URLコピー</button>
       </div>
     </div>
-    <p class="retry-btn" onclick="retryQuiz()">もう一度診断する</p>
-  </div>
-
-  <!-- ===== THANK YOU ===== -->
-  <div id="screen-thankyou">
-    <div class="ty-emoji">🎉</div>
-    <h2>ありがとうございます！</h2>
-    <p>
-      ご登録いただいたメールアドレスに<br>
-      「売上アップ3ステップ」をお送りします。<br><br>
-      ご確認のほどよろしくお願いいたします。
-    </p>
+    <p class="retry-link" onclick="retryQuiz()">もう一度診断する</p>
   </div>
 
 </div>
 
 <script>
-  /* ========== 質問データ ========== */
   const questions = [
     {
       text: "新しいお客様と接触する機会（SNS・紹介・広告など）はどのくらいありますか？",
@@ -409,9 +408,9 @@
     {
       text: "あなたのサービスの「価格」について、どう感じていますか？",
       choices: [
-        { label: "A", text: "安くしないと売れないと思っている", type: "value" },
+        { label: "A", text: "安くしないと売れないと思っている", type: "exposure" },
         { label: "B", text: "価格は妥当だと思うが、説明しても伝わらない", type: "trust" },
-        { label: "C", text: "価格よりも「何が得られるか」がうまく伝えられない", type: "offer" },
+        { label: "C", text: "価格より「何が得られるか」がうまく伝えられない", type: "offer" },
       ]
     },
     {
@@ -423,7 +422,7 @@
       ]
     },
     {
-      text: "過去3ヶ月で、見込み客との「次のアクション」（体験・相談・購入）はありましたか？",
+      text: "過去3ヶ月で、見込み客との「次のアクション」はありましたか？",
       choices: [
         { label: "A", text: "そもそも見込み客が少ない", type: "exposure" },
         { label: "B", text: "興味は持たれるが、決断してもらえない", type: "offer" },
@@ -440,36 +439,38 @@
     },
   ];
 
-  /* ========== 結果データ ========== */
   const results = {
     exposure: {
       emoji: "📣",
       title: "認知不足タイプ",
       subtitle: "「あなた」を知っている人がまだ少ない状態です",
-      desc: `売上が上がらない最大の原因は、<strong>見込み客の母数が足りないこと</strong>です。\n\nどんなに素晴らしいサービスや実績があっても、知られていなければ購入されません。まずは「発信量」と「露出の仕組み」を整えることが最優先です。\n\n💡 今すぐやること：SNS・ブログ・紹介など、あなたの得意な媒体で週3回以上の発信を始めましょう。`
+      desc: `売上が上がらない最大の原因は、<strong>見込み客の母数が足りないこと</strong>です。\n\nどんなに素晴らしいサービスがあっても、知られていなければ購入されません。まずは「発信量」と「露出の仕組み」を整えることが最優先です。\n\n💡 <strong>今すぐやること：</strong>SNS・ブログ・紹介など、あなたの得意な媒体で週3回以上の発信を始めましょう。`
     },
     trust: {
       emoji: "🤝",
       title: "信頼構築不足タイプ",
       subtitle: "知ってもらっているのに、まだ「選ばれて」いない状態です",
-      desc: `売上が上がらない原因は、<strong>「この人に頼みたい」という信頼感が足りないこと</strong>です。\n\n見込み客はあなたを認知していても、「本当に効果があるの？」「自分に合う？」という不安を持っています。実績・お客様の声・ストーリーなどで信頼を積み上げることが鍵です。\n\n💡 今すぐやること：過去のお客様の声（ビフォーアフター）を3つまとめて発信しましょう。`
+      desc: `売上が上がらない原因は、<strong>「この人に頼みたい」という信頼感が足りないこと</strong>です。\n\n見込み客はあなたを認知していても、「本当に効果があるの？」という不安を持っています。実績・お客様の声・ストーリーで信頼を積み上げることが鍵です。\n\n💡 <strong>今すぐやること：</strong>過去のお客様の声（ビフォーアフター）を3つまとめて発信しましょう。`
     },
     offer: {
       emoji: "🎯",
       title: "オファー設計不足タイプ",
       subtitle: "興味は持たれているのに、最後の一歩が踏み出せない状態です",
-      desc: `売上が上がらない原因は、<strong>「何をどう買えばいいか」が伝わっていないこと</strong>です。\n\nサービスの内容・価格・得られる変化が不明瞭だと、興味がある人でも購入を迷います。「今すぐこれを買うべき理由」を明確にするオファー設計が必要です。\n\n💡 今すぐやること：サービスの「before → after」を1文で書き直し、申込み導線を一本化しましょう。`
+      desc: `売上が上がらない原因は、<strong>「何をどう買えばいいか」が伝わっていないこと</strong>です。\n\nサービスの内容・価格・得られる変化が不明瞭だと、興味がある人でも購入を迷います。「今すぐこれを買うべき理由」を明確にするオファー設計が必要です。\n\n💡 <strong>今すぐやること：</strong>サービスの「before → after」を1文で書き直し、申込み導線を一本化しましょう。`
     },
   };
 
-  /* ========== 状態管理 ========== */
   let current = 0;
-  let scores = { exposure: 0, trust: 0, offer: 0, value: 0 };
+  let scores = { exposure: 0, trust: 0, offer: 0 };
   let resultType = "";
 
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
   function startQuiz() {
-    document.getElementById("screen-top").style.display = "none";
-    document.getElementById("screen-quiz").style.display = "block";
+    show('screen-quiz');
     renderQuestion();
   }
 
@@ -478,78 +479,59 @@
     const total = questions.length;
     const pct = Math.round(((current + 1) / total) * 100);
 
-    document.getElementById("progress-text").textContent = `質問 ${current + 1} / ${total}`;
-    document.getElementById("progress-pct").textContent = `${pct}%`;
-    document.getElementById("progress-fill").style.width = `${pct}%`;
-    document.getElementById("q-num").textContent = `Q${current + 1}`;
-    document.getElementById("q-text").textContent = q.text;
+    document.getElementById('prog-label').textContent = `質問 ${current + 1} / ${total}`;
+    document.getElementById('prog-pct').textContent = `${pct}%`;
+    document.getElementById('prog-fill').style.width = `${pct}%`;
+    document.getElementById('q-num').textContent = `Q ${current + 1}`;
+    document.getElementById('q-text').textContent = q.text;
 
-    const choicesEl = document.getElementById("q-choices");
-    choicesEl.innerHTML = "";
-    q.choices.forEach((c, i) => {
-      const btn = document.createElement("button");
-      btn.className = "choice-btn";
+    const el = document.getElementById('q-choices');
+    el.innerHTML = '';
+    q.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
       btn.innerHTML = `<span class="choice-label">${c.label}</span><span>${c.text}</span>`;
-      btn.onclick = () => selectAnswer(c.type, btn);
-      choicesEl.appendChild(btn);
+      btn.onclick = () => {
+        document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        scores[c.type] = (scores[c.type] || 0) + 1;
+        setTimeout(() => {
+          current++;
+          if (current < questions.length) renderQuestion();
+          else showResult();
+        }, 320);
+      };
+      el.appendChild(btn);
     });
   }
 
-  function selectAnswer(type, btn) {
-    // ハイライト
-    document.querySelectorAll(".choice-btn").forEach(b => b.classList.remove("selected"));
-    btn.classList.add("selected");
-
-    scores[type] = (scores[type] || 0) + 1;
-
-    setTimeout(() => {
-      current++;
-      if (current < questions.length) {
-        renderQuestion();
-      } else {
-        showResult();
-      }
-    }, 300);
-  }
-
   function showResult() {
-    document.getElementById("screen-quiz").style.display = "none";
-    document.getElementById("screen-result").style.display = "block";
-
-    // 最頻タイプを決定
-    resultType = Object.entries(scores)
-      .filter(([k]) => k !== "value")
-      .sort((a, b) => b[1] - a[1])[0][0];
-
+    resultType = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
     const r = results[resultType];
-    document.getElementById("res-emoji").textContent = r.emoji;
-    document.getElementById("res-title").textContent = r.title;
-    document.getElementById("res-subtitle").textContent = r.subtitle;
-    document.getElementById("res-desc").innerHTML = r.desc.replace(/\n/g, "<br>");
+    document.getElementById('res-emoji').textContent = r.emoji;
+    document.getElementById('res-title').textContent = r.title;
+    document.getElementById('res-subtitle').textContent = r.subtitle;
+    document.getElementById('res-desc').innerHTML = r.desc.replace(/\n/g, '<br>');
 
-    // シェアボタン設定
-    const shareText = `【無料診断】私は「${r.title}」でした！売上が上がらない原因がわかります👇`;
-    const shareUrl = window.location.href;
-    document.getElementById("share-x").href =
+    const shareText = `【無料診断】私は「${r.title}」でした！売上が上がらない本当の原因がわかります👇`;
+    const shareUrl = location.href;
+    document.getElementById('share-x').href =
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-    document.getElementById("share-line").href =
-      `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+
+    show('screen-result');
   }
-
-
 
   function copyUrl() {
-    navigator.clipboard.writeText(window.location.href)
-      .then(() => alert("URLをコピーしました！"))
-      .catch(() => alert("コピーに失敗しました。URLを手動でコピーしてください。"));
+    navigator.clipboard.writeText(location.href)
+      .then(() => alert('URLをコピーしました！'))
+      .catch(() => alert('手動でURLをコピーしてください'));
   }
 
   function retryQuiz() {
     current = 0;
-    scores = { exposure: 0, trust: 0, offer: 0, value: 0 };
-    resultType = "";
-    document.getElementById("screen-result").style.display = "none";
-    document.getElementById("screen-top").style.display = "block";
+    scores = { exposure: 0, trust: 0, offer: 0 };
+    resultType = '';
+    show('screen-top');
   }
 </script>
 </body>
