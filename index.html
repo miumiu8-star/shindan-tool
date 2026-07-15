@@ -366,17 +366,9 @@
 
     <div class="form-card">
       <h3>🎁 無料で解決策を受け取る</h3>
-      <p>あなたの原因タイプに合わせた<br><strong>「売上アップ3ステップ」</strong>をプレゼント中</p>
-      <div class="form-group">
-        <label>お名前（ニックネームOK）</label>
-        <input type="text" id="inp-name" placeholder="例：田中" />
-      </div>
-      <div class="form-group">
-        <label>メールアドレス</label>
-        <input type="email" id="inp-email" placeholder="例：you@example.com" />
-      </div>
-      <button class="btn-submit" onclick="submitForm()">無料で受け取る →</button>
-      <p class="privacy-note">※ 個人情報は厳重に管理し、第三者に提供しません。</p>
+      <p>あなたの原因タイプに合わせた<br><strong>「売上アップ3ステップ」</strong>をLINEでプレゼント中</p>
+      <a class="btn-submit" href="https://s.lmes.jp/landing-qr/2006793003-31EN9Bxn?uLand=xDpbWA" target="_blank" style="display:block;text-align:center;text-decoration:none;">📲 LINEで無料で受け取る →</a>
+      <p class="privacy-note">※ LINEの公式アカウントに遷移します。</p>
     </div>
 
     <div>
@@ -544,18 +536,7 @@
       `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
   }
 
-  function submitForm() {
-    const name = document.getElementById("inp-name").value.trim();
-    const email = document.getElementById("inp-email").value.trim();
-    if (!name) { alert("お名前を入力してください"); return; }
-    if (!email || !email.includes("@")) { alert("正しいメールアドレスを入力してください"); return; }
 
-    // ここに実際のフォーム送信処理（API/メールフォームサービスなど）を組み込む
-    console.log("登録データ:", { name, email, resultType });
-
-    document.getElementById("screen-result").style.display = "none";
-    document.getElementById("screen-thankyou").style.display = "block";
-  }
 
   function copyUrl() {
     navigator.clipboard.writeText(window.location.href)
